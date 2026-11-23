@@ -1,0 +1,10 @@
+{
+  "languages": ["en", "ps", "fa", "ar", "zh", "ru"],
+  "nonEnLanguages": ["ps", "fa", "ar", "zh", "ru"],
+  "investmentPaths": ["framework", "opportunities", "partnerships", "incentives", "risk-management", "partners", "process", "statistics"],
+  "operationsPaths": ["processing", "smelting", "research", "geological", "trade", "investment", "sustainability", "community", "digital", "safety"],
+  "provincePaths": ["badakhshan", "logar", "bamyan", "panjshir", "ghazni", "herat", "kandahar", "nuristan", "kunar", "takhar", "balkh", "helmand", "kabul", "nangarhar", "khost", "paktia", "paktika", "wardak", "kapisa", "parwan", "baghlan", "samangan", "jowzjan", "faryab", "sar-e-pol", "kunduz", "badghis", "ghor", "daykundi", "uruzgan", "zabul", "nimruz", "farah", "laghman"],
+  "contactPaths": ["email", "phone", "offices", "departments", "international", "media", "partnerships", "form"],
+  "timelinePaths": ["historical", "roadmap", "milestones", "vision-2040", "ancient-period", "medieval-period", "colonial-period", "soviet-period", "modern-era", "gemstone-history", "trade-routes", "archaeological", "documentation", "iron-history", "lithium-history", "coal-history", "marble-history", "chromite-history", "ancient-egypt", "silk-road", "renaissance", "british-surveys", "forecasting", "lapis-history", "emerald-history", "ruby-history", "usgs-surveys", "russian-surveys", "gold-history", "copper-history", "soviet-mapping", "caravan-routes", "maritime-trade", "mes-aynak-archaeology", "ancient-texts", "historical-maps", "museum-collections", "badakhshan-history", "panjshir-history"],
+  "mineralPaths": ["copper/mes-aynak", "copper/hajigak", "copper/balkhab", "lithium/ghazni", "lithium/nuristan", "gems/emeralds", "gems/lapis", "gems/rubies", "gems/sapphires", "gems/tourmaline", "gems/aquamarine", "gold/badakhshan", "ree/helmand", "chromite/reserves", "marble/white", "coal/basins"]
+}

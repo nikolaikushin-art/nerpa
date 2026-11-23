@@ -1,0 +1,129 @@
+<!-- Mobile header -->
+<header id="mob-header">
+  <div class="mob-logo">
+    <div class="n">N</div>
+    <span>NERPA Capital</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <button class="mob-export-btn" onclick="exportCsv()" title="Export CSV">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </button>
+    <button class="mob-export-btn" onclick="exportXlsx().catch(e=>{alert('Export failed: '+e.message);console.error(e);})" title="Export Excel">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+    </button>
+    <button class="mob-export-btn" onclick="exportPdf()" title="Export PDF">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    </button>
+    <button id="mob-hamburger" onclick="toggleMobNav()" aria-label="All Sections" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;-webkit-tap-highlight-color:transparent">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Full-nav bottom sheet overlay + panel -->
+<div id="mob-overlay" onclick="closeMobNav()"></div>
+<div id="mob-nav-panel">
+  <div class="mob-sheet-handle"></div>
+  <div id="mob-nav-header">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">All Sections</div>
+    <button id="mob-nav-close" onclick="closeMobNav()" style="background:none;border:none;color:var(--muted);cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;-webkit-tap-highlight-color:transparent">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mob-nav-body"></div>
+  <div class="mob-scenario-section">
+    <div class="mob-scenario-label">Active Scenario</div>
+    <div class="mob-sc-row" id="mob-sc-chips"></div>
+  </div>
+</div>
+
+<!-- Mobile bottom nav bar -->
+<!-- Formula Inspector Modal -->
+<div id="fi-overlay" onclick="if(event.target===this)closeFormulaInspector()">
+  <div id="fi-modal" role="dialog" aria-modal="true" aria-label="Formula Inspector">
+    <div id="fi-hdr">
+      <div id="fi-hdr-text">
+        <h2>Formula Inspector</h2>
+        <div id="fi-hdr-sub">All model formulas, calculation rules &amp; Excel logic — click any cell reference to understand how it is computed</div>
+      </div>
+      <button id="fi-close-btn" onclick="closeFormulaInspector()" title="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="fi-toolbar">
+      <div id="fi-search-wrap">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="fi-search" type="text" placeholder="Search formulas, categories…" oninput="fiFilter()" autocomplete="off">
+      </div>
+      <div id="fi-cat-pills"></div>
+      <span id="fi-count"></span>
+    </div>
+    <div id="fi-legend">
+      <span class="fi-lbl">Key:</span>
+      <span class="fi-badge-inp">Input</span><span style="font-size:10px;color:var(--muted)">Yellow — editable cell</span>
+      <span class="fi-badge-frm" style="margin-left:6px">Formula</span><span style="font-size:10px;color:var(--muted)">Blue — auto-calculates</span>
+      <span class="fi-badge-xs" style="margin-left:6px">Cross-sheet</span><span style="font-size:10px;color:var(--muted)">References another sheet</span>
+      <span class="fi-badge-calc" style="margin-left:6px">Model</span><span style="font-size:10px;color:var(--muted)">JavaScript engine logic</span>
+    </div>
+    <div id="fi-body"></div>
+  </div>
+</div>
+
+<nav id="mob-bottom-nav" aria-label="Main navigation"></nav>
+
+<div id="cap-root">
+  <aside id="sidebar">
+    <div id="sb-logo"><div class="n">N</div><div class="title">NERPA Capital</div></div>
+    <nav id="sb-nav"></nav>
+    <div id="sb-toggle" onclick="toggleSidebar()">&#8249;&#8249; Collapse</div>
+  </aside>
+  <div id="main">
+    <header id="topbar">
+      <div class="sub" id="tb-sub" style="padding-left:0">30-Year Institutional Model · Aug 2026 – Jul 2056</div>
+      <div style="position:relative">
+        <button id="scenario-btn" onclick="toggleScenario()" class="tb-btn">
+          <span class="label">Scenario</span>
+          <span id="sc-label" style="font-weight:600">Base</span>
+          <span>&#9660;</span>
+        </button>
+        <div id="scenario-dropdown"></div>
+      </div>
+      <div id="topbar-search">
+        <div style="position:relative">
+          <svg style="position:absolute;left:9px;top:50%;transform:translateY(-50%);opacity:.4" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input id="search-input" placeholder="Search worksheets, sectors, assumptions…" oninput="handleSearch(this.value)" onfocus="showSearchSuggestions()" autocomplete="off">
+          <div id="search-dropdown" style="display:none;position:absolute;top:calc(100% + 4px);left:0;width:360px;background:#fff;color:#1e2937;border:1px solid #e5e7eb;border-radius:3px;box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:200;max-height:300px;overflow-y:auto"></div>
+        </div>
+      </div>
+      <button class="tb-btn" id="pdf-btn" onclick="exportPdf()" title="Export full PDF report">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        PDF
+      </button>
+      <button class="tb-btn" onclick="exportCsv()" title="Export CSV">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        CSV
+      </button>
+      <button class="tb-btn" onclick="exportXlsx().catch(e=>{alert('Export failed: '+e.message);console.error(e);})" title="Export Excel workbook">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+        XLSX
+      </button>
+      <button class="tb-btn" onclick="showFormulaInspector()" title="Formula Inspector — view all model formulas and Excel logic" style="border-color:#6d3a9c;color:#6d3a9c">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="7"/><path d="m21 21-4.35-4.35"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="10" y1="7" x2="10" y2="13"/></svg>
+        fx
+      </button>
+    </header>
+    <div id="mck-bar">
+      <span id="mck-group">Overview</span>
+      <div id="mck-sep"></div>
+      <span id="mck-page">Executive Dashboard</span>
+      <div id="mck-right">
+        <span class="mck-tag">Confidential</span>
+        <div class="mck-dot"></div>
+        <span class="mck-tag" id="mck-scenario">Base Case</span>
+        <div class="mck-dot"></div>
+        <span class="mck-tag">FY2026–2056</span>
+      </div>
+    </div>
+    <div id="content"></div>
+  </div>
+</div>

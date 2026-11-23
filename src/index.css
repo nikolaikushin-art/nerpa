@@ -1,0 +1,257 @@
+@import "leaflet/dist/leaflet.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar Styles */
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 20% 3%;
+    --foreground: 0 0% 100%;
+
+    --card: 220 18% 6%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 18% 6%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 43 100% 65%;
+    --primary-foreground: 220 20% 3%;
+
+    --secondary: 220 18% 12%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 16% 18%;
+    --muted-foreground: 0 0% 75%;
+
+    --accent: 210 100% 68%;
+    --accent-foreground: 220 20% 3%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 18% 14%;
+    --input: 220 18% 14%;
+    --ring: 43 100% 65%;
+
+    --radius: 0.75rem;
+
+    /* Custom NERPA design tokens */
+    --nerpa-gold: 43 100% 65%;
+    --nerpa-gold-dark: 43 100% 52%;
+    --nerpa-gold-light: 43 100% 75%;
+    --nerpa-dark: 220 20% 3%;
+    --nerpa-dark-elevated: 220 18% 8%;
+    --nerpa-blue: 210 100% 68%;
+    --nerpa-charcoal: 220 20% 3%;
+    --nerpa-charcoal-light: 220 18% 10%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(180deg, hsl(220 20% 3%), hsl(220 18% 6%));
+    --gradient-gold: linear-gradient(135deg, hsl(43 100% 65%), hsl(43 100% 52%));
+    --gradient-radial: radial-gradient(circle at center, hsl(43 100% 65% / 0.08), transparent 70%);
+    --gradient-overlay: linear-gradient(180deg, hsl(220 20% 3% / 0), hsl(220 20% 3%));
+    
+    /* Effects */
+    --glow-gold: 0 0 80px hsl(43 100% 65% / 0.3);
+    --glow-subtle: 0 0 40px hsl(43 100% 65% / 0.15);
+    --shadow-elevated: 0 25px 80px -15px hsl(0 0% 0% / 0.8);
+    --shadow-soft: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
+    
+    /* Transitions */
+    --transition-smooth: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-quick: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    scroll-behavior: smooth;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  ::selection {
+    background-color: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Leaflet map tooltip — Nerpa design */
+.leaflet-tooltip-nerpa-wrapper {
+  background: hsl(var(--card)) !important;
+  border: 2px solid hsl(var(--primary) / 0.5) !important;
+  border-radius: var(--radius) !important;
+  padding: 0 !important;
+  box-shadow: var(--shadow-soft), 0 0 20px hsl(var(--primary) / 0.15);
+}
+.leaflet-tooltip-nerpa-wrapper .leaflet-tooltip-nerpa {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: hsl(var(--foreground));
+  line-height: 1.4;
+}
+.leaflet-tooltip-nerpa-wrapper .leaflet-tooltip-nerpa span {
+  color: hsl(var(--muted-foreground));
+}
+.leaflet-tooltip-nerpa-wrapper .leaflet-tooltip-nerpa strong {
+  color: hsl(var(--primary));
+}
+
+/* Section: globalization map — connected network feel */
+.section-map-abstract {
+  background-color: hsl(var(--nerpa-dark-elevated));
+  background-image:
+    radial-gradient(ellipse 100% 60% at 50% 0%, hsl(43 100% 65% / 0.06), transparent 55%),
+    linear-gradient(hsl(43 100% 65% / 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(43 100% 65% / 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+}
+
+/* Globalization-style map canvas — dark base with connectivity glow */
+.map-canvas-abstract {
+  background: linear-gradient(165deg, hsl(220 20% 5%), hsl(220 22% 4%) 50%, hsl(220 18% 5%));
+}
+.map-canvas-abstract::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, hsl(43 100% 65% / 0.1), transparent 50%);
+  pointer-events: none;
+}
+/* Force Leaflet map area to dark — no light default */
+.map-canvas-abstract .leaflet-container {
+  background: hsl(220 20% 4%) !important;
+}
+.map-canvas-abstract .leaflet-tile-pane {
+  background: transparent !important;
+}
+.map-canvas-abstract .leaflet-zoom a {
+  background: hsl(var(--card)) !important;
+  color: hsl(var(--foreground)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+.map-canvas-abstract .leaflet-control-attribution {
+  background: hsl(220 18% 6% / 0.9) !important;
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+/* 3D / 4D map effects — depth, glow, connection flow */
+.map-3d-container {
+  box-shadow:
+    var(--shadow-elevated),
+    0 0 0 1px hsl(43 100% 65% / 0.12),
+    0 0 80px hsl(43 100% 65% / 0.18),
+    inset 0 1px 0 hsl(0 0% 100% / 0.05);
+  transform: perspective(900px) rotateX(2.5deg);
+  transform-style: preserve-3d;
+}
+.map-glow-layer {
+  box-shadow: inset 0 0 120px hsl(43 100% 65% / 0.06);
+}
+.map-glow-layer::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, hsl(43 100% 65% / 0.05) 0%, transparent 40%, transparent 60%, hsl(43 100% 65% / 0.03) 100%);
+}
+
+/* Connection lines — visible globalization network (flow effect) */
+.map-canvas-abstract path.map-connection-line {
+  stroke-dasharray: 12 6;
+  stroke-width: 2.5px;
+  animation: map-connection-flow 1s linear infinite;
+}
+.map-canvas-abstract path.map-connection-line-sector {
+  stroke-dasharray: 6 6;
+  stroke-width: 1.8px;
+  animation: map-connection-flow 1.4s linear infinite;
+}
+@keyframes map-connection-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 18; }
+}
+
+/* Resource dots — clear nodes in connected network */
+.map-canvas-abstract .map-resource-dot {
+  filter: drop-shadow(0 0 10px hsl(43 100% 70% / 0.8));
+  animation: map-resource-pulse 2s ease-in-out infinite;
+}
+@keyframes map-resource-pulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
