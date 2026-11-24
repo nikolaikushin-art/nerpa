@@ -286,7 +286,7 @@ const TimelineDropdown = ({ onItemClick }: TimelineDropdownProps) => {
       title={t.navDropdowns.timeline.title}
       subtitle={t.navDropdowns.timeline.subtitle}
       viewAll={{ label: t.navDropdowns.timeline.viewComplete, href: "/timeline" }}
-      columns={3}
+      columns={4}
       onItemClick={onItemClick}
       groups={groups.map((group) => ({
         title: group.title,

@@ -4,9 +4,9 @@ export type PortalMenuLink = { label: string; href: string };
 export type PortalMenuGroup = { title?: string; links: PortalMenuLink[] };
 
 const columnClass = {
-  2: "columns-1 gap-x-8 sm:columns-2",
-  3: "columns-1 gap-x-8 sm:columns-2 xl:columns-3",
-  4: "columns-1 gap-x-8 sm:columns-2 xl:columns-4",
+  2: "grid grid-cols-1 gap-x-8 sm:grid-cols-2",
+  3: "grid grid-cols-1 gap-x-8 sm:grid-cols-2 xl:grid-cols-3",
+  4: "grid grid-cols-2 gap-x-8 xl:grid-cols-4",
 } as const;
 
 const PortalMegaPanel = ({
