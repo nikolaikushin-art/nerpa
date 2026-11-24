@@ -19,7 +19,7 @@ const OperationsDropdown = ({ operationsLinks, onItemClick }: OperationsDropdown
   
   return (
     <div 
-      className="fixed left-4 right-4 top-[7.25rem] z-40 max-h-[calc(100vh-7.25rem-7rem)] overflow-y-auto rounded-xl border border-border/50 bg-background/98 backdrop-blur-xl shadow-2xl animate-fade-in"
+      className="absolute left-4 right-4 top-full z-40 mt-1 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-border/50 bg-background/98 shadow-2xl"
     >
       {/* Gradient top border */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-amber to-primary" />

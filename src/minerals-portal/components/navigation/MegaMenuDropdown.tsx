@@ -40,7 +40,7 @@ const MegaMenuDropdown = ({
 
   return (
     <div
-      className="fixed left-4 right-4 top-[7.25rem] z-40 overflow-hidden rounded-xl border border-white/10 bg-[#0b0c10] shadow-2xl"
+      className="absolute left-4 right-4 top-full z-40 mt-1 overflow-hidden rounded-xl border border-white/10 bg-[#0b0c10] shadow-2xl"
       onMouseDown={(e) => e.stopPropagation()}
       onClick={(e) => e.stopPropagation()}
     >
