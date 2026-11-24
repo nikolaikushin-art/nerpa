@@ -34,6 +34,11 @@ export const TopNavigation = () => {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      const target = e.target;
+      if (target instanceof HTMLElement) {
+        const tag = target.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA" || target.isContentEditable) return;
+      }
       if (e.key === "Escape") {
         setOpen(false);
         setMenu(null);
