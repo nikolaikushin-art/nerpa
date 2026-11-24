@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 
-const SITE_PASSWORD = "Nerpa396!";
+const SITE_PASSWORD = "Nerpa369!";
 const STORAGE_KEY = "nerpa-site-access";
 
 export function SitePasswordGate({ children }: { children: React.ReactNode }) {
