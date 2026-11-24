@@ -73,7 +73,7 @@ export const SectorPageLayout = ({
     <div className="bg-background text-foreground min-h-screen">
       <TopNavigation />
       {/* Hero */}
-      <section className="relative h-[70vh] flex items-end overflow-hidden">
+      <section className="relative mt-[66px] min-h-[70vh] flex items-end overflow-hidden">
         <img src={heroImage} alt={title} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-16 w-full">

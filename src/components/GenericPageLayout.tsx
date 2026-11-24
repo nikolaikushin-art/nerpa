@@ -29,7 +29,7 @@ export const GenericPageLayout = ({
       <TopNavigation />
       
       {/* Hero */}
-      <section className={`relative ${heroImage ? 'h-[70vh]' : 'h-[50vh]'} flex items-end overflow-hidden`}>
+      <section className={`relative mt-[66px] ${heroImage ? 'min-h-[70vh]' : 'min-h-[50vh]'} flex items-end overflow-hidden`}>
         {heroImage &&
         <>
             <img src={heroImage} alt={title} className="absolute inset-0 w-full h-full object-cover" />

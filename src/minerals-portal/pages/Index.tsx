@@ -407,7 +407,7 @@ const Index = () => {
   ];
 
   return (
-    <div id="page-top" className="min-h-screen bg-background pt-24">
+    <div id="page-top" className="min-h-screen bg-background">
       {/* ==================== TOP NAVIGATION ==================== */}
       <MegaNavigationV2 />
 

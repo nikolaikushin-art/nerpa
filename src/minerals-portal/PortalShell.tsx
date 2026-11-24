@@ -28,7 +28,7 @@ const PortalShell = ({ children }: { children: ReactNode }) => {
     <LanguageProvider>
       <div className="minerals-portal">
         <TopNavigation />
-        <div className="pt-[66px]">
+        <div className="pt-[7.25rem]">
           <ErrorBoundary>{children}</ErrorBoundary>
         </div>
         <ElfsightWidget />

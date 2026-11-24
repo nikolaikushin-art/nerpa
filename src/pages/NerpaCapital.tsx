@@ -70,7 +70,7 @@ const NerpaCapital = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0b0c10" }}>
       <TopNavigation />
-      <div className="cap-scope" dangerouslySetInnerHTML={{ __html: markup }} />
+      <div className="cap-scope pt-[66px]" dangerouslySetInnerHTML={{ __html: markup }} />
     </div>
   );
 };

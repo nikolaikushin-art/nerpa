@@ -64,7 +64,7 @@ export const HeroSlideshow = ({ tagline, title, subtitle }: HeroSlideshowProps) 
   };
 
   return (
-    <section ref={sectionRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative mt-[66px] h-[calc(100vh-66px)] flex items-center justify-center overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}

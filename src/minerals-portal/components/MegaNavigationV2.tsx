@@ -818,7 +818,7 @@ const MegaNavigationV2 = () => {
     }
   };
 
-  return <header className={`fixed top-[66px] ${isRTL ? 'right-0' : 'left-0'} z-50 w-full transition-all duration-500 ${
+  return <header className={`fixed top-[67px] ${isRTL ? 'right-0' : 'left-0'} z-50 w-full transition-all duration-500 ${
       isScrolled
         ? 'bg-background/99 backdrop-blur-2xl border-b border-border/60 shadow-[0_20px_60px_rgba(0,0,0,0.75)]'
         : 'bg-gradient-to-b from-background/98 via-background/92 to-background/75 shadow-[0_20px_60px_rgba(0,0,0,0.65)]'

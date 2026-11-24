@@ -85,11 +85,11 @@ export const TopNavigation = () => {
       style={{ backgroundColor: BAR_BG, fontFamily: FONT }}
     >
       <div className="relative flex h-[66px] items-center justify-between px-5 sm:px-8 xl:px-11">
-        <Link to="/" aria-label="NERPA – Central Hub" className="flex-shrink-0">
+        <Link to="/" aria-label="NERPA – Central Hub" className="flex h-[46px] w-[46px] shrink-0 items-center justify-center overflow-hidden">
           <img
             src="https://pub-a8f03458547b480a8e1f00c152001820.r2.dev/nerpa-logo.png"
             alt="NERPA"
-            className="h-[46px] w-[46px] object-cover"
+            className="h-full w-full object-contain"
             width={46}
             height={46}
           />
