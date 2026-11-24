@@ -15,7 +15,6 @@ interface OperationsDropdownProps {
 
 const OperationsDropdown = ({ operationsLinks, onItemClick }: OperationsDropdownProps) => {
   const { t } = useLanguage();
-  const midpoint = Math.ceil(operationsLinks.length / 2);
 
   return (
     <PortalMegaPanel
@@ -23,12 +22,9 @@ const OperationsDropdown = ({ operationsLinks, onItemClick }: OperationsDropdown
       title={t.navDropdowns.operations.title}
       subtitle={t.navDropdowns.operations.subtitle}
       viewAll={{ label: t.navDropdowns.operations.viewAll, href: "/operations" }}
-      columns={2}
+      columns={4}
       onItemClick={onItemClick}
-      groups={[
-        { links: operationsLinks.slice(0, midpoint) },
-        { links: operationsLinks.slice(midpoint) },
-      ]}
+      groups={[{ links: operationsLinks }]}
     />
   );
 };

@@ -9,6 +9,33 @@ const columnClass = {
   4: "grid grid-cols-2 gap-x-8 xl:grid-cols-4",
 } as const;
 
+const balanceColumns = (groups: PortalMenuGroup[], count: number) => {
+  const items = groups.flatMap((group) =>
+    group.links.map((link) => ({ ...link, section: group.title })),
+  );
+  const base = Math.floor(items.length / count);
+  const extra = items.length % count;
+  const columns: PortalMenuGroup[][] = [];
+  let cursor = 0;
+
+  for (let index = 0; index < count; index += 1) {
+    const take = base + (index < extra ? 1 : 0);
+    const slice = items.slice(cursor, cursor + take);
+    cursor += take;
+    const column: PortalMenuGroup[] = [];
+    slice.forEach((item) => {
+      const current = column[column.length - 1];
+      if (!current || current.title !== item.section) {
+        column.push({ title: item.section, links: [] });
+      }
+      column[column.length - 1].links.push({ label: item.label, href: item.href });
+    });
+    if (column.length) columns.push(column);
+  }
+
+  return columns;
+};
+
 const PortalMegaPanel = ({
   icon: Icon,
   title,
@@ -31,6 +58,7 @@ const PortalMegaPanel = ({
     e.stopPropagation();
     onItemClick(e, href);
   };
+  const balanced = balanceColumns(groups, columns);
 
   return (
     <div
@@ -59,24 +87,28 @@ const PortalMegaPanel = ({
             </a>
           )}
         </div>
-        <div className={columnClass[columns]}>
-          {groups.map((group) => (
-            <div key={group.title || group.links[0]?.href} className="mb-4 break-inside-avoid">
-              {group.title && (
-                <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#f8c757]">
-                  {group.title}
-                </p>
-              )}
-              {group.links.map((link) => (
-                <a
-                  key={`${link.href}-${link.label}`}
-                  href={link.href}
-                  onClick={(e) => go(e, link.href)}
-                  className="flex items-center gap-2 rounded-md px-1.5 py-1 text-[13.5px] text-white/85 hover:bg-white/5 hover:text-[#f8c757]"
-                >
-                  <span className="flex-1">{link.label}</span>
-                  <ChevronRight className="h-3 w-3 text-white/25" />
-                </a>
+        <div className={`${columnClass[columns]} items-start`}>
+          {balanced.map((column, columnIndex) => (
+            <div key={column[0]?.links[0]?.href || columnIndex}>
+              {column.map((group) => (
+                <div key={`${group.title || "links"}-${group.links[0]?.href}`} className="mb-4">
+                  {group.title && (
+                    <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#f8c757]">
+                      {group.title}
+                    </p>
+                  )}
+                  {group.links.map((link) => (
+                    <a
+                      key={`${link.href}-${link.label}`}
+                      href={link.href}
+                      onClick={(e) => go(e, link.href)}
+                      className="flex items-center gap-2 rounded-md px-1.5 py-1 text-[13.5px] text-white/85 hover:bg-white/5 hover:text-[#f8c757]"
+                    >
+                      <span className="flex-1">{link.label}</span>
+                      <ChevronRight className="h-3 w-3 text-white/25" />
+                    </a>
+                  ))}
+                </div>
               ))}
             </div>
           ))}

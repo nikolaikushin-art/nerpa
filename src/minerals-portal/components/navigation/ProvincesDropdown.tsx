@@ -14,10 +14,6 @@ interface ProvincesDropdownProps {
 
 const ProvincesDropdown = ({ provinceLinks, onItemClick }: ProvincesDropdownProps) => {
   const { t } = useLanguage();
-  const size = Math.ceil(provinceLinks.length / 4) || 1;
-  const groups = [0, 1, 2, 3]
-    .map((index) => ({ links: provinceLinks.slice(index * size, (index + 1) * size) }))
-    .filter((group) => group.links.length > 0);
 
   return (
     <PortalMegaPanel
@@ -27,7 +23,7 @@ const ProvincesDropdown = ({ provinceLinks, onItemClick }: ProvincesDropdownProp
       viewAll={{ label: t.navDropdowns.provinces.viewMap, href: "#map" }}
       columns={4}
       onItemClick={onItemClick}
-      groups={groups}
+      groups={[{ links: provinceLinks }]}
     />
   );
 };

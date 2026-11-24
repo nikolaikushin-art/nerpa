@@ -25,9 +25,9 @@ const ContactDropdown = ({ onItemClick }: ContactDropdownProps) => {
       title={t.navDropdowns.contact.title}
       subtitle={t.navDropdowns.contact.subtitle}
       viewAll={{ label: t.navDropdowns.contact.viewSection, href: "#contact" }}
-      columns={2}
+      columns={4}
       onItemClick={onItemClick}
-      groups={[{ links: links.slice(0, 4) }, { links: links.slice(4) }]}
+      groups={[{ links }]}
     />
   );
 };
